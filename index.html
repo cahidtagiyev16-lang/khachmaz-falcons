@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khachmaz Falcons FC - Modern Rəsmi Heyət</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f4f4f7; color: #333; padding: 40px 10px; }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header { text-align: center; padding: 50px 0; background-color: #fff; border-radius: 15px; margin-bottom: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .header h1 { font-size: 34px; letter-spacing: -0.5px; color: #1a1a1a; font-weight: 800; text-transform: uppercase; }
+        .header p { color: #b91c1c; margin-top: 8px; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .section-title { font-size: 26px; font-weight: 700; color: #1a1a1a; margin: 50px 0 25px 0; letter-spacing: -0.5px; }
+        
+        /* Modern Grid - Kartların yan-yana düzülməsi */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* Modern Kart Dizaynı (Dördbucaq format) */
+        .player-card { background-color: #fff; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid #e1e1e6; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .player-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        
+        /* Böyük Şəkil Sahəsi */
+        .img-container { width: 100%; height: 320px; overflow: hidden; background-color: #222; }
+        .player-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: 0.3s; }
+        .player-card:hover .player-img { transform: scale(1.03); }
+        
+        /* Forma nömrəsi */
+        .number-tag { position: absolute; top: 15px; left: 15px; font-size: 24px; font-weight: 800; color: #fff; background-color: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 4px; }
+        
+        /* Məlumat paneli */
+        .info { padding: 20px; background: #fff; display: flex; flex-direction: column; flex-grow: 1; text-align: center;}
+        
+        .name { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 5px; text-transform: capitalize; }
+        .position { font-size: 14px; color: #1e3a8a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .role { font-size: 11px; background-color: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-top: 10px; font-weight: 500; border: 1px solid #e2e8f0; }
+        
+        /* Sarı Ətraflı Düyməsi */
+        .details-btn { background-color: #ffd700; color: #000; text-align: center; padding: 15px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; width: 100%; margin-top: auto; }
+        .player-card:hover .details-btn { background-color: #f5cf00; }
+        
+        /* Müəllif Hüququ (Footer) Dizaynı */
+        .footer { text-align: center; padding: 30px 0; margin-top: 60px; border-top: 1px solid #e1e1e6; background-color: #fff; border-radius: 8px; box-shadow: 0 -4px 15px rgba(0,0,0,0.02); }
+        .footer p { font-size: 14px; color: #666; font-weight: 500; }
+        .footer .designer { color: #b91c1c; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>🦅 KHACHMAZ FALCONS FC</h1>
+            <p>RƏSMİ OYUNÇU HEYƏTİ | MÖVSÜM 2026</p>
+        </div>
+
+        <h2 class="section-title">Yarımmüdafiəçilər</h2>
+        <div class="grid">
+            {% for p in categories.yarimmudafieciler %}
+            <a href="/player/{{ p.id }}" class="player-card">
+                <div class="img-container">
+                    <span class="number-tag">{{ p.number }}</span>
+                    <img src="{{ url_for('static', filename=p.image) }}" alt="{{ p.name }}" class="player-img">
+                </div>
+                <div class="info">
+                    <div class="name">{{ p.name }} {{ p.surname }}</div>
+                    <div class="position">{{ p.position }}</div>
+                    {% if p.role %}
+                        <div><span class="role">{{ p.role }}</span></div>
+                    {% endif %}
+                </div>
+                <div class="details-btn">Ətraflı →</div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <h2 class="section-title">Hücumçular</h2>
+        <div class="grid">
+            {% for p in categories.hucumcular %}
+            <a href="/player/{{ p.id }}" class="player-card">
+                <div class="img-container">
+                    <span class="number-tag">{{ p.number }}</span>
+                    <img src="{{ url_for('static', filename=p.image) }}" alt="{{ p.name }}" class="player-img">
+                </div>
+                <div class="info">
+                    <div class="name">{{ p.name }} {{ p.surname }}</div>
+                    <div class="position">{{ p.position }}</div>
+                    {% if p.role %}
+                        <div><span class="role">{{ p.role }}</span></div>
+                    {% endif %}
+                </div>
+                <div class="details-btn">Ətraflı →</div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Khachmaz Falcons FC. Bütün hüquqlar qorunur.</p>
+            <p style="margin-top: 5px;">Powered & Designed by <span class="designer">Cahid Tağıyev</span> 🦅</p>
+        </div>
+    </div>
+
+</body>
+</html>

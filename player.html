@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ player.name }} {{ player.surname }} - Profil</title>
+    <style>
+        body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Segoe UI', Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background-color: #1f2833; border: 2px solid #66fcf1; border-radius: 15px; width: 350px; padding: 30px; box-shadow: 0 10px 25px rgba(102, 252, 241, 0.2); text-align: center; }
+        
+        /* Şəkil üçün xüsusi dizayn */
+        .player-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #66fcf1; margin: 0 auto 20px auto; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        
+        h1 { color: #66fcf1; font-size: 28px; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .role-badge { background-color: #1f2833; color: #ff0055; border: 1px solid #ff0055; padding: 4px 12px; font-size: 12px; border-radius: 20px; display: inline-block; margin-top: 5px; font-weight: bold; letter-spacing: 1px; }
+        .info-container { margin-top: 25px; text-align: left; background-color: #151a21; padding: 15px; border-radius: 10px; }
+        .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2b3a4a; font-size: 15px; }
+        .info-row:last-child { border-bottom: none; }
+        .label { color: #85929E; font-weight: 500; }
+        .value { color: #ffffff; font-weight: bold; }
+        .back-btn { display: inline-block; margin-top: 25px; color: #66fcf1; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; border: 1px solid #66fcf1; padding: 8px 20px; border-radius: 5px; }
+        .back-btn:hover { background-color: #66fcf1; color: #0b0c10; box-shadow: 0 0 15px rgba(102, 252, 241, 0.4); }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="{{ url_for('static', filename=player.image) }}" alt="{{ player.name }}" class="player-img">
+        
+        <h1>{{ player.name }} {{ player.surname }}</h1>
+        <div class="role-badge">{{ player.role }}</div>
+        
+        <div class="info-container">
+            <div class="info-row"><span class="label">Forma nömrəsi:</span><span class="value">#{{ player.number }}</span></div>
+            <div class="info-row"><span class="label">Mövqe:</span><span class="value">{{ player.position }}</span></div>
+            <div class="info-row"><span class="label">İşlək ayaq:</span><span class="value">{{ player.foot }}</span></div>
+            <div class="info-row"><span class="label">Boy / Çəki:</span><span class="value">{{ player.height_weight }}</span></div>
+            <div class="info-row"><span class="label">Doğum Tarixi:</span><span class="value">{{ player.birth_date }}</span></div>
+        </div>
+        
+        <a href="/" class="back-btn">← HEYƏTƏ QAYIT</a>
+    </div>
+
+</body>
+</html>
